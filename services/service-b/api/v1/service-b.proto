@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package services.service_b.api.v1;
+
+option go_package = "github.com/mrdan4es/bazel-argocd-grpc-example/services/service-b/api/v1;bpb";
+
+service ServiceB {
+  rpc Ping(PingRequest) returns (PingResponse) {};
+}
+
+message PingRequest {
+  string info = 1;
+}
+
+message PingResponse {
+  string info = 1;
+}

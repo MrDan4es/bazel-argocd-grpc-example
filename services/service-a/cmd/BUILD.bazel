@@ -1,0 +1,34 @@
+load("@rules_go//go:def.bzl", "go_binary", "go_library")
+load("//build:defs.bzl", "go_image")
+
+go_library(
+    name = "cmd_lib",
+    srcs = [
+        "config.go",
+        "main.go",
+    ],
+    embedsrcs = ["default-config.yml"],
+    importpath = "github.com/mrdan4es/bazel-argocd-grpc-example/services/service-a/cmd",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//pkg/config",
+        "//services/service-a/api/v1:v1_apb_go_proto",
+        "//services/service-a/internal/server",
+        "@com_github_rs_zerolog//:zerolog",
+        "@com_github_spf13_pflag//:pflag",
+        "@org_golang_google_grpc//:grpc",
+    ],
+)
+
+go_binary(
+    name = "cmd",
+    embed = [":cmd_lib"],
+    visibility = ["//visibility:public"],
+)
+
+go_image(
+    name = "oci",
+    embed = [":cmd"],
+    entrypoint = "/cmd",
+    visibility = ["//visibility:public"],
+)

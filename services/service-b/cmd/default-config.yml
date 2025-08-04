@@ -1,0 +1,7 @@
+logger:
+  level: "info"
+
+http:
+  listenAddr: ":8081"
+
+serviceAAddr: "service-a:2020"

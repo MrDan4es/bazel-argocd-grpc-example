@@ -1,0 +1,7 @@
+services:
+  service-a:
+    image: local/mrdan4es/bazel-argocd-grpc-example/service-a
+  service-b:
+    image: local/mrdan4es/bazel-argocd-grpc-example/service-b
+    ports:
+      - "8081:8081"

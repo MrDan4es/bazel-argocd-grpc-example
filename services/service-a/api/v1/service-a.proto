@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package services.service_a.api.v1;
+
+option go_package = "github.com/mrdan4es/bazel-argocd-grpc-example/services/service-a/api/v1;apb";
+
+service ServiceA {
+  rpc GetSystemInfo(GetSystemInfoRequest) returns (GetSystemInfoResponse) {};
+}
+
+message GetSystemInfoRequest {}
+
+message GetSystemInfoResponse {
+  string os = 1;
+  string arch = 2;
+  string go_version = 3;
+  int32 cpu_cores = 4;
+  string hostname = 5;
+  string k8s_pod = 6;
+  string k8s_node = 7;
+  string k8s_namespace = 8;
+  string k8s_pod_ip = 9;
+  string cpu_info = 10;
+  string mem_info = 11;
+}

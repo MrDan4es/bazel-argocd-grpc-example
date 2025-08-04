@@ -1,0 +1,13 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "config",
+    srcs = ["config.go"],
+    importpath = "github.com/mrdan4es/bazel-argocd-grpc-example/pkg/config",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@com_github_go_viper_mapstructure_v2//:mapstructure",
+        "@com_github_rs_zerolog//:zerolog",
+        "@com_github_spf13_viper//:viper",
+    ],
+)

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>System Information</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { color: #333; }
+        h2 { color: #444; margin-top: 20px; }
+        table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        pre { background-color: #f5f5f5; padding: 10px; border-radius: 4px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+<h1>System Information</h1>
+
+<h2>Basic Info</h2>
+<table>
+    <tr><th>OS</th><td>{{.Os}}</td></tr>
+    <tr><th>Architecture</th><td>{{.Arch}}</td></tr>
+    <tr><th>Go Version</th><td>{{.GoVersion}}</td></tr>
+    <tr><th>CPU Cores</th><td>{{.CpuCores}}</td></tr>
+    <tr><th>Hostname</th><td>{{.Hostname}}</td></tr>
+</table>
+
+<h2>Kubernetes Info</h2>
+<table>
+    <tr><th>Pod Name</th><td>{{.K8SPod}}</td></tr>
+    <tr><th>Node Name</th><td>{{.K8SNode}}</td></tr>
+    <tr><th>Namespace</th><td>{{.K8SNamespace}}</td></tr>
+    <tr><th>Pod IP</th><td>{{.K8SPodIp}}</td></tr>
+</table>
+
+{{if .CpuInfo}}
+<h2>CPU Info</h2>
+<pre>{{.CpuInfo}}</pre>
+{{end}}
+
+{{if .MemInfo}}
+<h2>Memory Info</h2>
+<pre>{{.MemInfo}}</pre>
+{{end}}
+</body>
+</html>

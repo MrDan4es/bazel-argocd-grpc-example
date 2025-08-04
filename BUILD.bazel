@@ -1,0 +1,25 @@
+load("@gazelle//:def.bzl", "gazelle")
+load("//build:defs.bzl", "containers_bundle", "containers_push")
+
+# gazelle:prefix github.com/mrdan4es/bazel-argocd-grpc-example
+# gazelle:proto package
+# gazelle:proto_group go_package
+# gazelle:go_grpc_compilers @rules_go//proto:go_proto,@rules_go//proto:go_grpc_v2
+gazelle(name = "gazelle")
+
+images = dict({
+    "mrdan4es/bazel-argocd-grpc-example/service-a": "//services/service-a/cmd",
+    "mrdan4es/bazel-argocd-grpc-example/service-b": "//services/service-b/cmd",
+})
+
+containers_bundle(
+    name = "bundle",
+    images = images,
+    registry = "local",
+)
+
+containers_push(
+    name = "push",
+    images = images,
+    registry = "ghcr.io",
+)

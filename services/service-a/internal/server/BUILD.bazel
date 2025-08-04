@@ -1,0 +1,9 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "server",
+    srcs = ["server.go"],
+    importpath = "github.com/mrdan4es/bazel-argocd-grpc-example/services/service-a/internal/server",
+    visibility = ["//services/service-a:__subpackages__"],
+    deps = ["//services/service-a/api/v1:v1_apb_go_proto"],
+)
