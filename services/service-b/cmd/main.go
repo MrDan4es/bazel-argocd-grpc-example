@@ -15,6 +15,7 @@ import (
 	"github.com/spf13/pflag"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
+	"google.golang.org/grpc/keepalive"
 
 	libConfig "github.com/mrdan4es/bazel-argocd-grpc-example/pkg/config"
 	apb "github.com/mrdan4es/bazel-argocd-grpc-example/services/service-a/api/v1"
@@ -61,6 +62,9 @@ func run(ctx context.Context, cfg *config) error {
 		cfg.ServiceAAddr,
 		grpc.WithDefaultServiceConfig(`{"loadBalancingPolicy": "round_robin"}`),
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
+		grpc.WithKeepaliveParams(keepalive.ClientParameters{
+			Time: 5 * time.Second,
+		}),
 	)
 	if err != nil {
 		return err

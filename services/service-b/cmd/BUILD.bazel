@@ -18,6 +18,7 @@ go_library(
         "@com_github_spf13_pflag//:pflag",
         "@org_golang_google_grpc//:grpc",
         "@org_golang_google_grpc//credentials/insecure",
+        "@org_golang_google_grpc//keepalive",
     ],
 )
 

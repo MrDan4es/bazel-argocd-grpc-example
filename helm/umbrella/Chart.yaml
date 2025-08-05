@@ -1,0 +1,22 @@
+apiVersion: v2
+name: umbrella
+description: A Helm chart for Kubernetes
+
+type: application
+
+version: 0.1.0
+
+appVersion: "1.0.0"
+
+dependencies:
+  - name: service-template
+    version: "0.1.0"
+    repository: file://../service-template
+    alias: service-a
+    condition: service-a.enabled
+
+  - name: service-template
+    version: "0.1.0"
+    repository: file://../service-template
+    alias: service-b
+    condition: service-b.enabled

@@ -1,3 +1,4 @@
+load("@aspect_bazel_lib//lib:expand_template.bzl", "expand_template")
 load("@gazelle//:def.bzl", "gazelle")
 load("//build:defs.bzl", "containers_bundle", "containers_push")
 
@@ -12,6 +13,13 @@ images = dict({
     "mrdan4es/bazel-argocd-grpc-example/service-b": "//services/service-b/cmd",
 })
 
+expand_template(
+    name = "tags_stamped",
+    out = "_stamped.tags.txt",
+    stamp_substitutions = {"latest": "{{BUILD_EMBED_LABEL}}"},
+    template = ["latest"],
+)
+
 containers_bundle(
     name = "bundle",
     images = images,
@@ -22,4 +30,5 @@ containers_push(
     name = "push",
     images = images,
     registry = "ghcr.io",
+    remote_tags = ":tags_stamped",
 )

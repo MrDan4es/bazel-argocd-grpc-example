@@ -3,5 +3,7 @@ services:
     image: local/mrdan4es/bazel-argocd-grpc-example/service-a
   service-b:
     image: local/mrdan4es/bazel-argocd-grpc-example/service-b
+    environment:
+      - SERVICE_B_SERVICEAADDR=service-a:2020
     ports:
       - "8081:8081"
