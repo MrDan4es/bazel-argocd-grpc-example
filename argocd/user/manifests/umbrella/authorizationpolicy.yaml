@@ -1,0 +1,16 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: service-b-authz
+  namespace: umbrella
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: service-b
+  action: CUSTOM
+  provider:
+    name: ext-authz
+  rules:
+    - to:
+        - operation:
+            methods: ["*"]

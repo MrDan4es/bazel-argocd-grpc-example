@@ -1,0 +1,10 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationProvider
+metadata:
+  name: ext-authz
+  namespace: istio-system
+spec:
+  grpc:
+    service: umbrella-service-c.umbrella.svc.cluster.local
+    port: 2020
+  timeout: 2s
