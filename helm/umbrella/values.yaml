@@ -1,8 +1,8 @@
 service-a:
-  replicaCount: 5
+  replicaCount: 3
   image:
     repository: ghcr.io/mrdan4es/bazel-argocd-grpc-example/service-a
-    tag: "1.0.0"
+    tag: "1.0.1"
   service:
     portName: grpc
     port: 2020
@@ -10,7 +10,7 @@ service-a:
 service-b:
   image:
     repository: ghcr.io/mrdan4es/bazel-argocd-grpc-example/service-b
-    tag: "1.0.0"
+    tag: "1.0.1"
   extraEnvVars:
     - name: SERVICE_B_SERVICEAADDR
       value: dns:///umbrella-service-a:2020
@@ -27,3 +27,12 @@ service-b:
         paths:
           - path: /
             pathType: ImplementationSpecific
+service-c:
+  replicaCount: 2
+  image:
+    repository: ghcr.io/mrdan4es/bazel-argocd-grpc-example/service-c
+    tag: "1.0.1"
+  service:
+    portName: grpc
+    port: 2020
+    targetPort: 2020

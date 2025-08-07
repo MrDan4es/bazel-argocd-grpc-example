@@ -11,6 +11,7 @@ gazelle(name = "gazelle")
 images = dict({
     "mrdan4es/bazel-argocd-grpc-example/service-a": "//services/service-a/cmd",
     "mrdan4es/bazel-argocd-grpc-example/service-b": "//services/service-b/cmd",
+    "mrdan4es/bazel-argocd-grpc-example/service-c": "//services/service-c/cmd",
 })
 
 expand_template(

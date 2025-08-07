@@ -3,6 +3,7 @@ module github.com/mrdan4es/bazel-argocd-grpc-example
 go 1.24.4
 
 require (
+	github.com/envoyproxy/go-control-plane v0.13.1
 	github.com/go-viper/mapstructure/v2 v2.4.0
 	github.com/rs/zerolog v1.34.0
 	github.com/spf13/pflag v1.0.6
@@ -11,10 +12,13 @@ require (
 )
 
 require (
+	github.com/cncf/xds/go v0.0.0-20240905190251-b4127c9b8d78 // indirect
+	github.com/envoyproxy/protoc-gen-validate v1.1.0 // indirect
 	github.com/fsnotify/fsnotify v1.8.0 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.19 // indirect
 	github.com/pelletier/go-toml/v2 v2.2.3 // indirect
+	github.com/planetscale/vtprotobuf v0.6.1-0.20240319094008-0393e58bdf10 // indirect
 	github.com/sagikazarmark/locafero v0.7.0 // indirect
 	github.com/sourcegraph/conc v0.3.0 // indirect
 	github.com/spf13/afero v1.12.0 // indirect

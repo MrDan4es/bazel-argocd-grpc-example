@@ -1,0 +1,5 @@
+logger:
+  level: "info"
+
+grpc:
+  listenPort: 2020

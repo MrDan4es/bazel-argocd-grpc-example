@@ -20,3 +20,10 @@ dependencies:
     repository: file://../service-template
     alias: service-b
     condition: service-b.enabled
+
+  - name: service-template
+    version: "0.1.0"
+    repository: file://../service-template
+    alias: service-c
+    condition: service-c.enabled
+
