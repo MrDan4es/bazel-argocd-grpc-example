@@ -11,3 +11,4 @@ helmCharts:
 
 resources:
   - gateway.yaml
+  - ingressroute.yaml

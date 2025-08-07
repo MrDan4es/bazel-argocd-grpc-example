@@ -9,5 +9,6 @@ spec:
   gatewayClassName: istio-mesh
   listeners:
     - name: http
-      port: 8081
+      port: 80
       protocol: HTTP
+      hostname: "service-b.local"
