@@ -6,9 +6,9 @@ metadata:
 spec:
   project: umbrella
   source:
-    repoURL: ghcr.io/mrdan4es/bazel-argocd-grpc-example
-    chart: umbrella
-    targetRevision: 0.1.0
+    repoURL: https://github.com/MrDan4es/bazel-argocd-grpc-example
+    path: argocd/user/manifests/umbrella
+    targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
     namespace: umbrella
