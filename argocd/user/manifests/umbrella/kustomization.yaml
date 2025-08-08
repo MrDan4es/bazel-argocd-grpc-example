@@ -10,7 +10,4 @@ helmCharts:
     namespace: umbrella
 
 resources:
-  - gateway.yaml
   - ingressroute.yaml
-  - authorizationpolicy.yaml
-  - authorizationprovider.yaml
