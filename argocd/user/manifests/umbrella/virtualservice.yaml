@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: service-b
+spec:
+  hosts:
+    - "service-b.local"
+  gateways:
+    - umbrella-gateway
+  http:
+    - route:
+        - destination:
+            host: umbrella-service-b
+            port:
+              number: 80

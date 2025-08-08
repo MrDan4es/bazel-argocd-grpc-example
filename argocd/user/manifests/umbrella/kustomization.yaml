@@ -12,3 +12,6 @@ helmCharts:
 resources:
   - ingressroute.yaml
   - namespace.yaml
+  - envoyfilter.yaml
+  - gateway.yaml
+  - virtualservice.yaml
