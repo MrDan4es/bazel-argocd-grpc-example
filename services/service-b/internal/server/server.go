@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
+	"os"
 
 	"github.com/rs/zerolog"
 
@@ -14,6 +15,12 @@ import (
 
 //go:embed index.html.tmpl
 var indexTemplateBytes []byte
+
+type tmplData struct {
+	AuthzHostname      string
+	ServiceASystemInfo *apb.GetSystemInfoResponse
+	Hostname           string
+}
 
 var indexTmpl = template.Must(template.New("index").Parse(string(indexTemplateBytes)))
 
@@ -41,10 +48,14 @@ func infoHandler(ctx context.Context, aClient apb.ServiceAClient) func(w http.Re
 		}
 
 		authzHostname := r.Header.Get("x-hostname-info")
-		info.AuthzHostname = authzHostname
+		hostname, _ := os.Hostname()
 
 		w.Header().Set("Content-Type", "text/html; charset=utf-8")
-		if err := indexTmpl.Execute(w, info); err != nil {
+		if err := indexTmpl.Execute(w, tmplData{
+			AuthzHostname:      authzHostname,
+			ServiceASystemInfo: info,
+			Hostname:           hostname,
+		}); err != nil {
 			log.Err(err).Msg("execute template")
 		}
 	}

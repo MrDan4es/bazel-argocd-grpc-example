@@ -1,13 +1,14 @@
 service-a:
   image:
-    tag: "1.0.3"
+    tag: "1.0.5"
 
 service-b:
+  replicaCount: 2
   image:
-    tag: "1.0.4"
+    tag: "1.0.5"
   ingress:
     enabled: false
 
 service-c:
   image:
-    tag: "1.0.3"
+    tag: "1.0.5"

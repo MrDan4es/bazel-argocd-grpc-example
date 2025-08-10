@@ -6,10 +6,6 @@ import (
 	"os"
 	"runtime"
 
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/metadata"
-	"google.golang.org/grpc/status"
-
 	pb "github.com/mrdan4es/bazel-argocd-grpc-example/services/service-a/api/v1"
 )
 
@@ -33,25 +29,12 @@ func (s *Server) GetSystemInfo(ctx context.Context, _ *pb.GetSystemInfoRequest) 
 		K8SPodIp:     getK8sValue("POD_IP", "IP"),
 	}
 
-	if hostname, err := os.Hostname(); err == nil {
-		r.Hostname = hostname
-	}
+	r.Hostname, _ = os.Hostname()
 
 	// CPU and memory info (Linux specific)
 	if runtime.GOOS == "linux" {
 		r.CpuInfo = readFileIfExists("/proc/cpuinfo")
 		r.MemInfo = readFileIfExists("/proc/meminfo")
-	}
-
-	md, ok := metadata.FromIncomingContext(ctx)
-	if !ok {
-		return nil, status.Errorf(codes.Internal, "get metadata from incoming context")
-	}
-
-	r.AuthzHostname = "undefined"
-	authzHostNames := md["x-hostname-info"]
-	if len(authzHostNames) >= 1 {
-		r.AuthzHostname = authzHostNames[0]
 	}
 
 	return r, nil

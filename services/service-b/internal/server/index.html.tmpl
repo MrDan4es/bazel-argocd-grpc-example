@@ -13,7 +13,29 @@
     </style>
 </head>
 <body>
-<h1>Ext Authz Information</h1>
+<h1>Service-A Information</h1>
+
+<h2>Basic Info</h2>
+<table>
+    <tr><th>Hostname</th><td>{{.ServiceASystemInfo.Hostname}}</td></tr>
+    <tr><th>Pod Name</th><td>{{.ServiceASystemInfo.K8SPod}}</td></tr>
+    <tr><th>Node Name</th><td>{{.ServiceASystemInfo.K8SNode}}</td></tr>
+    <tr><th>Namespace</th><td>{{.ServiceASystemInfo.K8SNamespace}}</td></tr>
+    <tr><th>Pod IP</th><td>{{.ServiceASystemInfo.K8SPodIp}}</td></tr>
+</table>
+
+<h1>System Information</h1>
+
+<h1>Service-B Information</h1>
+
+<h2>Basic Info</h2>
+<table>
+    <tr><th>Hostname</th><td>{{.Hostname}}</td></tr>
+</table>
+
+<h1>System Information</h1>
+
+<h1>Service-C Information</h1>
 
 <h2>Basic Info</h2>
 <table>
@@ -24,29 +46,20 @@
 
 <h2>Basic Info</h2>
 <table>
-    <tr><th>OS</th><td>{{.Os}}</td></tr>
-    <tr><th>Architecture</th><td>{{.Arch}}</td></tr>
-    <tr><th>Go Version</th><td>{{.GoVersion}}</td></tr>
-    <tr><th>CPU Cores</th><td>{{.CpuCores}}</td></tr>
-    <tr><th>Hostname</th><td>{{.Hostname}}</td></tr>
+    <tr><th>OS</th><td>{{.ServiceASystemInfo.Os}}</td></tr>
+    <tr><th>Architecture</th><td>{{.ServiceASystemInfo.Arch}}</td></tr>
+    <tr><th>Go Version</th><td>{{.ServiceASystemInfo.GoVersion}}</td></tr>
+    <tr><th>CPU Cores</th><td>{{.ServiceASystemInfo.CpuCores}}</td></tr>
 </table>
 
-<h2>Kubernetes Info</h2>
-<table>
-    <tr><th>Pod Name</th><td>{{.K8SPod}}</td></tr>
-    <tr><th>Node Name</th><td>{{.K8SNode}}</td></tr>
-    <tr><th>Namespace</th><td>{{.K8SNamespace}}</td></tr>
-    <tr><th>Pod IP</th><td>{{.K8SPodIp}}</td></tr>
-</table>
-
-{{if .CpuInfo}}
+{{if .ServiceASystemInfo.CpuInfo}}
 <h2>CPU Info</h2>
-<pre>{{.CpuInfo}}</pre>
+<pre>{{.ServiceASystemInfo.CpuInfo}}</pre>
 {{end}}
 
-{{if .MemInfo}}
+{{if .ServiceASystemInfo.MemInfo}}
 <h2>Memory Info</h2>
-<pre>{{.MemInfo}}</pre>
+<pre>{{.ServiceASystemInfo.MemInfo}}</pre>
 {{end}}
 </body>
 </html>
