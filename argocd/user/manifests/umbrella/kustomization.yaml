@@ -10,7 +10,7 @@ helmCharts:
     namespace: umbrella
 
 resources:
- # - ingressroute.yaml
+  - ingressroute.yaml
   - namespace.yaml
   - gateway.yaml
   - virtualservice.yaml
