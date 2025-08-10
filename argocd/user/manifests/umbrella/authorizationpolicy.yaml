@@ -1,0 +1,16 @@
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: umbrella-ingress-ext-authz
+  namespace: istio-system
+spec:
+  selector:
+    matchLabels:
+      istio: ingress
+  action: CUSTOM
+  provider:
+    name: service-c-ext-authz-grpc
+  rules:
+    - to:
+      - operation:
+          hosts: ["service-b.local"]
