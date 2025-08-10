@@ -9,7 +9,7 @@ spec:
     - umbrella-gateway
   http:
     - route:
-        - destination:
-            host: umbrella-service-b
-            port:
-              number: 80
+      - destination:
+          host: umbrella-service-b
+          port:
+            number: 80

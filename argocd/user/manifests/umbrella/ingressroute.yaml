@@ -2,7 +2,7 @@ apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: service-b-ingressroute
-  namespace: umbrella
+  namespace: istio-ingress
 spec:
   entryPoints:
     - web
@@ -10,5 +10,5 @@ spec:
     - match: Host(`service-b.local`)
       kind: Rule
       services:
-        - name: umbrella-service-b
+        - name: istio-ingress
           port: 80
