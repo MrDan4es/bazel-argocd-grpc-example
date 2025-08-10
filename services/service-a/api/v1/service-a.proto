@@ -22,4 +22,5 @@ message GetSystemInfoResponse {
   string k8s_pod_ip = 9;
   string cpu_info = 10;
   string mem_info = 11;
+  string authz_hostname = 12;
 }

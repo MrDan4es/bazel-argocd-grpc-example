@@ -6,6 +6,10 @@ import (
 	"os"
 	"runtime"
 
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/metadata"
+	"google.golang.org/grpc/status"
+
 	pb "github.com/mrdan4es/bazel-argocd-grpc-example/services/service-a/api/v1"
 )
 
@@ -17,7 +21,7 @@ func New() *Server {
 	return &Server{}
 }
 
-func (s *Server) GetSystemInfo(context.Context, *pb.GetSystemInfoRequest) (*pb.GetSystemInfoResponse, error) {
+func (s *Server) GetSystemInfo(ctx context.Context, _ *pb.GetSystemInfoRequest) (*pb.GetSystemInfoResponse, error) {
 	r := &pb.GetSystemInfoResponse{
 		Os:           runtime.GOOS,
 		Arch:         runtime.GOARCH,
@@ -37,6 +41,17 @@ func (s *Server) GetSystemInfo(context.Context, *pb.GetSystemInfoRequest) (*pb.G
 	if runtime.GOOS == "linux" {
 		r.CpuInfo = readFileIfExists("/proc/cpuinfo")
 		r.MemInfo = readFileIfExists("/proc/meminfo")
+	}
+
+	md, ok := metadata.FromIncomingContext(ctx)
+	if !ok {
+		return nil, status.Errorf(codes.Internal, "get metadata from incoming context")
+	}
+
+	r.AuthzHostname = "undefined"
+	authzHostNames := md["x-hostname-info"]
+	if len(authzHostNames) >= 1 {
+		r.AuthzHostname = authzHostNames[0]
 	}
 
 	return r, nil

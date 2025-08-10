@@ -2,6 +2,7 @@ package server
 
 import (
 	"context"
+	"os"
 
 	envoyCore "github.com/envoyproxy/go-control-plane/envoy/config/core/v3"
 	envoyAuth "github.com/envoyproxy/go-control-plane/envoy/service/auth/v3"
@@ -12,9 +13,17 @@ import (
 )
 
 const (
-	AuthHeader = "x-auth-info"
-	IPHeader   = "x-real-ip"
+	HostnameHeader = "x-hostname-info"
+	IPHeader       = "x-real-ip"
 )
+
+var (
+	hostname string
+)
+
+func init() {
+	hostname, _ = os.Hostname()
+}
 
 type Server struct {
 	log zerolog.Logger
@@ -41,7 +50,7 @@ func (s *Server) Check(ctx context.Context, req *envoyAuth.CheckRequest) (*envoy
 		Str("user_ip", userIp).
 		Send()
 
-	return responseOk("")
+	return responseOk(hostname)
 }
 
 func responseOk(value string) (*envoyAuth.CheckResponse, error) {
@@ -52,7 +61,7 @@ func responseOk(value string) (*envoyAuth.CheckResponse, error) {
 				Headers: []*envoyCore.HeaderValueOption{
 					{
 						Header: &envoyCore.HeaderValue{
-							Key:   AuthHeader,
+							Key:   HostnameHeader,
 							Value: value,
 						},
 						AppendAction: envoyCore.HeaderValueOption_APPEND_IF_EXISTS_OR_ADD,

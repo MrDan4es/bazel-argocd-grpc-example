@@ -3,6 +3,7 @@ package server
 import (
 	"context"
 	_ "embed"
+	"fmt"
 	"html/template"
 	"net/http"
 
@@ -35,8 +36,12 @@ func infoHandler(ctx context.Context, aClient apb.ServiceAClient) func(w http.Re
 		if err != nil {
 			log.Err(err).Msg("get system info from service-a")
 			w.WriteHeader(http.StatusInternalServerError)
+			_, _ = w.Write([]byte(fmt.Sprintf("failed to get system info from service-a: %v", err)))
 			return
 		}
+
+		authzHostname := r.Header.Get("x-hostname-info")
+		info.AuthzHostname = authzHostname
 
 		w.Header().Set("Content-Type", "text/html; charset=utf-8")
 		if err := indexTmpl.Execute(w, info); err != nil {
