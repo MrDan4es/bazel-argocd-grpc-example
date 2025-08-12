@@ -9,6 +9,11 @@ version: 0.1.0
 appVersion: "1.0.0"
 
 dependencies:
+  - name: redis
+    version: "0.16.5"
+    repository: "https://ot-container-kit.github.io/helm-charts/"
+    condition: redis.enabled
+
   - name: service-template
     version: "0.1.0"
     repository: file://../service-template
@@ -26,4 +31,3 @@ dependencies:
     repository: file://../service-template
     alias: service-c
     condition: service-c.enabled
-
