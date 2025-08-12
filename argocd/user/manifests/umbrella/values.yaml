@@ -3,9 +3,6 @@ redis:
     name: "redis"
     image: docker.io/redis
     tag: 7.4.5-alpine3.21
-    metadata:
-      annotations:
-        sidecar.istio.io/inject: "false"
 
 service-a:
   image:
