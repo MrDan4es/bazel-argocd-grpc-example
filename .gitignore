@@ -1,3 +1,4 @@
 .ijwb
 bazel-*
 *.tgz
+Chart.lock

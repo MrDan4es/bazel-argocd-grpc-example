@@ -4,7 +4,7 @@ kind: Kustomization
 helmCharts:
   - name: umbrella
     releaseName: umbrella
-    version: 0.1.0
+    version: 0.2.0
     repo: oci://ghcr.io/mrdan4es/bazel-argocd-grpc-example
     valuesFile: values.yaml
     namespace: umbrella
