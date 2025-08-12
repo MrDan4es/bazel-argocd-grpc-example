@@ -9,6 +9,15 @@ spec:
     repoURL: https://ot-container-kit.github.io/helm-charts
     chart: redis-operator
     targetRevision: 0.21.0
+    helm:
+      values: |
+        resources:
+          limits:
+            cpu: 500m
+            memory: 256Mi
+          requests:
+            cpu: 50m
+            memory: 32Mi
   destination:
     server: https://kubernetes.default.svc
     namespace: redis-operator
