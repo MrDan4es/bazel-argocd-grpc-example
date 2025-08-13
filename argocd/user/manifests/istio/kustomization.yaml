@@ -6,6 +6,7 @@ helmCharts:
     releaseName: istiod
     version: 1.26.3
     repo: https://istio-release.storage.googleapis.com/charts
+    valuesFile: values.yaml
     namespace: istio-system
 
 resources:
