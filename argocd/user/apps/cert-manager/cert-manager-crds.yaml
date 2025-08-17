@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager-crds
+  namespace: argocd
+spec:
+  project: cert-manager
+  source:
+    path: argocd/user/manifests/cert-manager-crds
+    repoURL: 'https://github.com/MrDan4es/bazel-argocd-grpc-example'
+    targetRevision: HEAD
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cert-manager
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

@@ -1,0 +1,13 @@
+{
+  "appName": "user",
+  "userGivenName": "user",
+  "destNamespace": "argocd",
+  "destServer": "https://kubernetes.default.svc",
+  "srcPath": "argocd/user/apps/cert-manager",
+  "srcRepoURL": "https://github.com/MrDan4es/bazel-argocd-grpc-example.git",
+  "srcTargetRevision": "",
+  "labels": null,
+  "annotations": null,
+  "exclude": "",
+  "include": ""
+}
