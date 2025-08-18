@@ -15,8 +15,8 @@ data:
     trustDomain: cluster.local
     meshNetworks: 'networks: {}'
     extensionProviders:
-      - name: service-c-ext-authz-grpc
+      - name: ftb-ext-authz-grpc
         envoyExtAuthzGrpc:
-          service: "umbrella-service-c.umbrella.svc.cluster.local"
+          service: "ftb-kangaroo.ftb.svc.cluster.local"
           port: "2020"
           timeout: "1s"

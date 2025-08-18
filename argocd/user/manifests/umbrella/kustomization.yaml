@@ -14,4 +14,4 @@ resources:
   - namespace.yaml
   - gateway.yaml
   - virtualservice.yaml
-  - authorizationpolicy.yaml
+#  - authorizationpolicy.yaml
