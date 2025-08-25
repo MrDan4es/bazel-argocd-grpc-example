@@ -8,56 +8,10 @@ spec:
   source:
     repoURL: https://istio-release.storage.googleapis.com/charts
     chart: base
-    targetRevision: 1.26.3
+    targetRevision: 1.27.0
   destination:
     server: https://kubernetes.default.svc
     namespace: istio-system
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: istiod
-  namespace: argocd
-spec:
-  project: istio
-  source:
-    repoURL: https://github.com/MrDan4es/bazel-argocd-grpc-example
-    path: argocd/user/manifests/istio
-    targetRevision: HEAD
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: istio-system
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: istio-ingress
-  namespace: argocd
-spec:
-  project: istio
-  source:
-    repoURL: https://istio-release.storage.googleapis.com/charts
-    chart: gateway
-    targetRevision: 1.26.3
-    helm:
-      values: |
-        service:
-          type: ClusterIP
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: istio-ingress
   syncPolicy:
     automated:
       prune: true
